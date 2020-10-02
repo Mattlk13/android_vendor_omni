@@ -36,12 +36,12 @@ except ImportError:
 
 # Config
 # set this to the default remote to use in repo
-default_rem = "omnirom"
+default_rem = "omnirom2"
 # set this to the default revision to use (branch/tag name)
 default_rev = "android-10"
 # set this to the remote that you use for projects from your team repos
 # example fetch="https://github.com/omnirom"
-default_team_rem = "omnirom"
+default_team_rem = "omnirom2"
 # this shouldn't change unless google makes changes
 local_manifest_dir = ".repo/local_manifests"
 # change this to your name on github (or equivalent hosting)
@@ -293,28 +293,37 @@ def create_dependency_manifest(dependencies):
         revision = dependency.get("revision", default_rev)
         remote = dependency.get("remote", default_rem)
         override = dependency.get("override", None)
-        
-        if override is not None:
-            #print("found override in ", repository)
-            project = create_remove_project(repository)
+        remove = dependency.get("remove", None)
+
+        if remove is not None:
+            #print("found remove in ", repository)
+            project = create_remove_project(remove)
             if project is not None:
                 manifest = append_to_manifest(project)
                 #print(ES.tostring(manifest).decode())
                 write_to_manifest(manifest)
+        else:
+            if override is not None:
+                #print("found override in ", repository)
+                project = create_remove_project(override)
+                if project is not None:
+                    manifest = append_to_manifest(project)
+                    #print(ES.tostring(manifest).decode())
+                    write_to_manifest(manifest)
 
-        # not adding an organization should default to android_team
-        # only apply this to github
-        if remote == "github":
-            if "/" not in repository:
-                repository = '/'.join([android_team, repository])
-        project = create_manifest_project(repository,
-                                          target_path,
-                                          remote=remote,
-                                          revision=revision)
-        if project is not None:
-            manifest = append_to_manifest(project)
-            write_to_manifest(manifest)
-            projects.append(target_path)
+            # not adding an organization should default to android_team
+            # only apply this to github
+            if remote == "github":
+                if "/" not in repository:
+                    repository = '/'.join([android_team, repository])
+            project = create_manifest_project(repository,
+                                            target_path,
+                                            remote=remote,
+                                            revision=revision)
+            if project is not None:
+                manifest = append_to_manifest(project)
+                write_to_manifest(manifest)
+                projects.append(target_path)
     if len(projects) > 0:
         os.system("repo sync -f --no-clone-bundle %s" % " ".join(projects))
 

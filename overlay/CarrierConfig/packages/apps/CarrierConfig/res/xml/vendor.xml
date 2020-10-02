@@ -28,6 +28,7 @@
         <boolean name="carrier_rtt_supported_on_vtcalls" value="false" />
         <boolean name="carrier_rtt_upgrade_supported" value="false" />
         <boolean name="carrier_rtt_downgrade_supported" value="false" />
+        <boolean name="hide_lte_plus_data_icon_bool" value="false"/>
         <string-array name="carrier_metered_iwlan_apn_types_strings" num="4">
             <item value="default" />
             <item value="dun" />
@@ -1681,6 +1682,7 @@
         <string name="vendor_carrier_eons_short">TMO</string>
         <boolean name="use_only_rsrp_for_lte_signal_bar_bool" value="true" />
         <string name="wcdma_default_signal_strength_measurement_string">rscp</string>
+        <boolean name="carrier_vt_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="310" mnc="160">
         <boolean name="carrier_vt_available_bool" value="true" />
@@ -2052,6 +2054,18 @@
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="enhanced_4g_lte_on_by_default_bool" value="true" />
     </carrier_config>
+    <carrier_config mcc="502" mnc="10">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="502" mnc="16">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="502" mnc="153">
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+    </carrier_config>
     <carrier_config mcc="310" mnc="028" />
     <carrier_config mcc="311" mnc="390" />
     <carrier_config mcc="441" mnc="00" />
@@ -2090,6 +2104,13 @@
     </carrier_config>
     <carrier_config mcc="404" mnc="10">
         <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_vt_available_bool" value="true" />
+    </carrier_config>
+    <carrier_config mcc="404" mnc="11">
+        <boolean name="config_force_send_sms_over_cs" value="true" />
+        <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="404" mnc="16">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -2111,12 +2132,18 @@
     </carrier_config>
     <carrier_config mcc="404" mnc="90">
         <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_vt_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="404" mnc="92">
         <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_vt_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="404" mnc="93">
         <boolean name="carrier_volte_available_bool" value="true" />
+        <boolean name="carrier_vt_available_bool" value="true" />
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="404" mnc="94">
         <boolean name="carrier_volte_available_bool" value="true" />
@@ -2192,10 +2219,6 @@
         <boolean name="carrier_volte_available_bool" value="true" />
     </carrier_config>
     <carrier_config mcc="404" mnc="05">
-        <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="config_force_send_sms_over_cs" value="true" />
-    </carrier_config>
-    <carrier_config mcc="404" mnc="11">
         <boolean name="carrier_volte_available_bool" value="true" />
         <boolean name="config_force_send_sms_over_cs" value="true" />
     </carrier_config>
@@ -2348,7 +2371,13 @@
     <carrier_config mcc="293" mnc="41">
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
         <boolean name="carrier_volte_available_bool" value="true" />
-        <boolean name="carrier_vt_available_bool" value="true" />
+        <int name="maxImageHeight" value="2112" />
+        <int name="maxMessageSize" value="2097152" />
+        <int name="maxImageWidth" value="4608" />
+    </carrier_config>
+    <carrier_config mcc="293" mnc="64">
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
+        <boolean name="carrier_volte_available_bool" value="true" />
         <int name="maxImageHeight" value="2112" />
         <int name="maxMessageSize" value="2097152" />
         <int name="maxImageWidth" value="4608" />

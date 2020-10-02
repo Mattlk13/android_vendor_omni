@@ -2,22 +2,29 @@
 PRODUCT_PACKAGES += \
     MonthCalendarWidget \
     OmniSwitch \
-    Chromium \
     OmniJaws \
     OmniStyle \
-    MusicFX \
-    Phonograph \
     MatLog \
     OmniChange \
     OpenDelta \
     Turbo \
-    OmniRecord \
     ThemePicker \
-    webview \
-    ExactCalculator
+    SystemWebView
 
 PRODUCT_PACKAGES += \
-     OmniOverlayStub
+    OmniOverlayStub \
+    omni-overlays
+
+ifneq ($(PRODUCT_EXCLUDE_EXTRA_PACKAGES),true)
+PRODUCT_PACKAGES += \
+    ChromeModernPublic \
+    ExactCalculator \
+    MusicFX \
+    Phonograph
+else
+PRODUCT_PACKAGES += \
+    OmniStoreInstaller
+endif
 
 # Additional tools
 PRODUCT_PACKAGES += \
@@ -64,7 +71,7 @@ PRODUCT_PACKAGES += telephony-ext
 PRODUCT_BOOT_JARS += telephony-ext
 
 # for fun
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     EggGame
 
 #PRODUCT_PACKAGES += \
@@ -73,3 +80,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_ENG += \
     bash \
     su
+
+$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
+$(call inherit-product-if-exists, vendor/omni/prebuilt/fonts/fonts.mk)

@@ -34,11 +34,6 @@ OMNI_PRODUCT_PROPERTIES += \
 OMNI_PRODUCT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
-# enable ADB authentication if not on eng build
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-OMNI_PRODUCT_PROPERTIES  += ro.adb.secure=1
-endif
-
 # Enforce privapp-permissions whitelist
 OMNI_PRODUCT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
@@ -51,8 +46,11 @@ ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
     vendor/omni/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
     vendor/omni/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/omni/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh \
+    vendor/omni/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+ifeq ($(filter $(ROM_BUILDTYPE), GAPPS MICROG),)
+PRODUCT_COPY_FILES += \
     vendor/omni/prebuilt/addon.d/69-gapps.sh:system/addon.d/69-gapps.sh
+endif
 else
 PRODUCT_COPY_FILES += \
     vendor/omni/prebuilt/bin/backuptool.sh:system/bin/backuptool.sh \
@@ -106,6 +104,9 @@ PRODUCT_COPY_FILES += \
 # whitelist packages for location providers not in system
 OMNI_PRODUCT_PROPERTIES += \
     ro.services.whitelist.packagelist=com.google.android.gms
+
+PRODUCT_COPY_FILES += \
+    vendor/omni/prebuilt/etc/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
 
 # Additional packages
 -include vendor/omni/config/packages.mk
